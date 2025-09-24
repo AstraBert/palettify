@@ -13,6 +13,7 @@ func main() {
 
 	// Define a route for handling image uploads
 	app.Post("/colors", handlers.ExtractColorsImage)
+	app.Get("/home", handlers.HomeRoute)
 
 	// Start the Fiber server on port 3000
 	if err := app.Listen(":3000"); err != nil {

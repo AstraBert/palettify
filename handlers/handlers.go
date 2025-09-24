@@ -6,6 +6,7 @@ import (
 	_ "image/png"
 
 	imageprocessing "github.com/AstraBert/palettify/image_processing"
+	"github.com/AstraBert/palettify/templates"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -31,4 +32,10 @@ func ExtractColorsImage(c *fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{"status": 200, "message": "Colors generated correctly", "colors": colorMap})
+}
+
+func HomeRoute(c *fiber.Ctx) error {
+	home := templates.Home()
+	c.Set("Content-Type", "text/html")
+	return home.Render(c.Context(), c.Response().BodyWriter())
 }

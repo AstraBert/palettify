@@ -1,0 +1,52 @@
+package templates
+
+templ Home() {
+    <head>
+        <script src="//unpkg.com/alpinejs" defer></script>
+         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <div x-data="{ imageUrl: null, fileName: null }">
+        <label for="image">Choose an image to extract the color palette from:</label>
+        
+        <input 
+            type="file" 
+            id="image" 
+            name="image" 
+            accept="image/png, image/jpeg" 
+            x-ref="inputImage"
+            @change="
+                const file = $event.target.files[0];
+                if (file) {
+                    fileName = file.name;
+                    imageUrl = URL.createObjectURL(file);
+                } else {
+                    fileName = null;
+                    imageUrl = null;
+                }
+            "
+        />
+        
+        <div x-show="fileName" x-text="'Selected: ' + fileName" class="text-sm text-gray-600 mt-2"></div>
+        
+        <div x-show="imageUrl" class="mt-4">
+            <img 
+                :src="imageUrl" 
+                alt="Selected image preview"
+                class="max-w-md max-h-64 object-contain border rounded shadow-sm"
+            />
+        </div>
+        
+        <button 
+            x-show="imageUrl"
+            @click="
+                imageUrl = null; 
+                fileName = null; 
+                $refs.inputImage.value = '';
+            "
+            type="button"
+            class="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        >
+            Clear Image
+        </button>
+    </div>
+}

@@ -9,6 +9,7 @@ require (
 )
 
 require (
+	github.com/a-h/templ v0.3.943 // indirect
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
@@ -18,5 +19,5 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.51.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	golang.org/x/sys v0.28.0 // indirect
+	golang.org/x/sys v0.34.0 // indirect
 )
