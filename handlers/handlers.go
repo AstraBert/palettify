@@ -12,26 +12,31 @@ import (
 
 func ExtractColorsImage(c *fiber.Ctx) error {
 	file, err := c.FormFile("image")
+	c.Set("Content-Type", "text/html")
 	if err != nil {
-		return c.JSON(fiber.Map{"status": 500, "message": "Server error: " + err.Error(), "colors": nil})
+		comp := templates.Colors([]color.RGBA{})
+		return comp.Render(c.Context(), c.Response().BodyWriter())
 	}
 	src, err := file.Open()
 	if err != nil {
-		return c.JSON(fiber.Map{"status": 500, "message": "Server error: " + err.Error(), "colors": nil})
+		comp := templates.Colors([]color.RGBA{})
+		return comp.Render(c.Context(), c.Response().BodyWriter())
 	}
 	defer src.Close()
 	colors, err := imageprocessing.ProcessImage(src)
 	if err != nil {
-		return c.JSON(fiber.Map{"status": 500, "message": "Server error: " + err.Error(), "colors": nil})
+		comp := templates.Colors([]color.RGBA{})
+		return comp.Render(c.Context(), c.Response().BodyWriter())
 	}
-	colorMap := map[int]map[string]uint8{}
+	colorsRGBA := []color.RGBA{}
 
-	for i, c := range colors {
+	for _, c := range colors {
 		rgba, _ := c.(color.RGBA)
-		colorMap[i] = map[string]uint8{"R": rgba.R, "G": rgba.G, "B": rgba.B, "A": rgba.A}
+		colorsRGBA = append(colorsRGBA, rgba)
 	}
 
-	return c.JSON(fiber.Map{"status": 200, "message": "Colors generated correctly", "colors": colorMap})
+	comp := templates.Colors(colorsRGBA)
+	return comp.Render(c.Context(), c.Response().BodyWriter())
 }
 
 func HomeRoute(c *fiber.Ctx) error {

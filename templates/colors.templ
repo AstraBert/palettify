@@ -1,0 +1,21 @@
+package templates
+
+import "image/color"
+import "fmt"
+
+templ Colors(colors []color.RGBA) {
+    if len(colors) > 0 {
+        <div class="space-y-8">
+            <h4 class="text-center font-semibold text-gray-600 text-lg">Extracted Colors:</h4>
+            <div class={fmt.Sprintf("w-[%dpx] h-[300px] grid grid-cols-%d border border-gray-100 shadow-lg p-10", (len(colors)+3)*100, len(colors))}>
+                for _, item := range colors {
+                    <div class={fmt.Sprintf("w-[100px] h-[100px] bg-[rgba(%d,%d,%d,%d)] cursor-pointer justify-center", item.R, item.G, item.B, item.A)} @click={fmt.Sprintf("navigator.clipboard.writeText('rgba(%d,%d,%d,%d)'); alert('Correctly copied color RGBA code :)')", item.R, item.G, item.B, item.A)}></div>
+                }
+            </div>
+        </div>
+    } else {
+        <div class="bg-red-300 justify-center flex">
+            <p class="text-lg font-semibold text-red-500">An error occurred while extracting the palette colors, try again with a different image</p>
+        </div>
+    }
+}
