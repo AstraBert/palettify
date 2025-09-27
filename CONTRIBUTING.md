@@ -1,4 +1,4 @@
-# Contributing to `git-push-blog`
+# Contributing to `palettify`
 
 Thank you for your interest in contributing to this project! Please review these guidelines before getting started.
 
@@ -16,25 +16,6 @@ Thank you for your interest in contributing to this project! Please review these
 1. Open a new issue
 2. Provide a clear, concise title that describes the problem or feature request
 3. Include a detailed description of the issue or requested feature
-
-## Blog Contributions
-
-You can contribute with your own blog articles by following these steps:
-
-- Write a blog article
-- Save it under `contents/{number}.md` (add 1 to the last published article)
-- Ensure that you followed the header structure correctly:
-
-```md
----
-title: Getting Started with Markdown
-publishing_date: 2025-09-20
-author: Clelia Astra Bertelli
----
-```
-
-- Verify that your changes pass the pre-commit checks
-- Commit and push your changes to a secondary branch, and open a pull request to `main`
 
 ## Code Contributions
 
