@@ -6,7 +6,7 @@ The flow is simple: upload image -> extract colors -> copy the colors RGBA codes
 
 ## Install and Launch
 
-> _If you are not interested in replicating this application but you want to use it, you can head to the [live demo](#)_
+> _If you are not interested in replicating this application but you want to use it, you can head to the [live demo](https://palettify.nl)_
 
 ### From source code
 
@@ -106,4 +106,4 @@ This project is distributed under [MIT license](./LICENSE).
 
 ---
 
-_Built with love and [Templ](https://templ.guide), [HTMX](https://htmx.org) and [AlpineJS](https://alpinejs.dev)_
+_Built with love and [Templ](https://templ.guide), [HTMX](https://htmx.org), [AlpineJS](https://alpinejs.dev) and [GoFiber](https://gofiber.io)_
