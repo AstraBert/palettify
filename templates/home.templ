@@ -29,22 +29,22 @@ templ Home() {
             <h2 class="font-poppins text-2xl">Extract a color palette from <span class="italic font-semibold">any</span> image!</h2>
         </header>
         <br>
-        <div x-data="{ imageUrl: null, fileName: null }" class="flex flex-col items-top justify-start border rounded-lg border-gray-100 bg-blue-100 backdrop-filter backdrop-blur-lg p-6 w-full h-full min-h-screen">
+        <div x-data="{ imageUrl: null, fileName: null }" class="flex flex-col items-top justify-start p-6 w-full h-full min-h-screen">
             <label for="image" class="text-center font-semibold text-gray-600 text-lg mb-4">Choose an image to extract the color palette from:</label>
-            
-            <form 
-            hx-post="/colors" 
-            hx-target="#paletteColors" 
+
+            <form
+            hx-post="/colors"
+            hx-target="#paletteColors"
             hx-trigger="submit"
             hx-encoding="multipart/form-data"
             enctype="multipart/form-data"
-            class="w-full flex flex-col items-center"
-        >
-            <div class="flex justify-center w-full mb-4">
-                <input 
-                    type="file" 
-                    id="image" 
-                    name="image" 
+            class="w-full flex flex-col items-center border-4 border-gray-300 border-dashed rounded-xl"
+            >
+            <div class="flex justify-center w-full mt-10 mb-10">
+                <input
+                    type="file"
+                    id="image"
+                    name="image"
                     accept="image/png, image/jpeg"
                     required
                     x-ref="inputImage"
@@ -58,24 +58,35 @@ templ Home() {
                             imageUrl = null;
                         }
                     "
-                    class="bg-blue-500 hover:bg-blue-600 rounded-lg shadow-xl border border-gray-200 w-48 h-24 text-white cursor-pointer"
+                    class="hidden"
                 />
+                <button
+                    type="button"
+                    @click="$refs.inputImage.click()"
+                    class="bg-blue-500 hover:bg-blue-600 rounded-lg shadow-xl border border-gray-200 w-48 h-24 text-white cursor-pointer flex flex-col items-center justify-center gap-2"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v12"/>
+                        <path d="m17 8-5-5-5 5"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    </svg>
+                    <span class="text-sm">Upload an Image</span>
+                </button>
             </div>
-            
+
             <div x-show="fileName" x-text="'Selected: ' + fileName" class="text-sm text-gray-600 text-center mb-4"></div>
-            
+
             <div x-show="imageUrl" class="flex flex-col items-center justify-center gap-4">
-                <img 
-                    :src="imageUrl" 
+                <img
+                    :src="imageUrl"
                     alt="Selected image preview"
                     class="max-w-md max-h-64 object-contain border rounded shadow-sm"
                 />
-                
+
                 <div class="flex gap-4">
-                    <button 
+                    <button
                         @click="
-                            imageUrl = null; 
-                            fileName = null; 
+                            imageUrl = null;
+                            fileName = null;
                             $refs.inputImage.value = '';
                             $refs.paletteDisplay.innerHTML = '';
                         "
@@ -84,8 +95,8 @@ templ Home() {
                     >
                         Clear Image
                     </button>
-                    
-                    <button 
+
+                    <button
                         type="submit"
                         class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                         hx-indicator="#loading"
@@ -93,13 +104,13 @@ templ Home() {
                         Extract Colors
                     </button>
                 </div>
-                
+
                 <div id="loading" class="htmx-indicator">
                     <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
                 </div>
             </div>
         </form>
-        
+
         <div id="paletteColors" class="mt-6 w-full flex justify-center space-y-8" x-ref="paletteDisplay"></div>
         </div>
     </body>

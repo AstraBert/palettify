@@ -13,26 +13,26 @@ templ Colors(colors []color.RGBA) {
     if len(colors) > 0 {
         <div class="flex flex-col items-center">
             <h4 class="text-center font-semibold text-gray-600 text-lg mb-6">Extracted Colors:</h4>
-            
+
             <!-- Color palette display -->
             <div class="flex flex-wrap justify-center gap-4 mb-8 p-4 bg-white rounded-lg shadow-sm">
                 for _, item := range colors {
-                    <div 
-                        class="w-24 h-24 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200 border border-gray-200" 
+                    <div
+                        class="w-24 h-24 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-200 border border-gray-200"
                         style={fmt.Sprintf("background-color: rgba(%d,%d,%d,%d)", item.R, item.G, item.B, item.A)}
                         @click={fmt.Sprintf("navigator.clipboard.writeText('rgba(%d,%d,%d,%d)'); alert('RGBA code copied successfully!')", item.R, item.G, item.B, item.A)}
                     ></div>
                 }
             </div>
-            
+
             <!-- CSS code display -->
             <div class="w-full max-w-2xl">
-                <pre 
-                    class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm border border-gray-700 shadow-lg mb-4 overflow-x-auto" 
+                <pre
+                    class="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm border border-gray-700 shadow-lg mb-4 overflow-x-auto"
                     x-ref="cssCode"
                 >{cssCode}</pre>
                 <div class="flex justify-center">
-                    <button 
+                    <button
                         class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200 font-medium shadow-md"
                         x-ref="copyButton"
                         @click="navigator.clipboard.writeText($refs.cssCode.textContent); $refs.copyButton.textContent = 'Copied!'; setTimeout(() => {$refs.copyButton.textContent = 'Copy CSS Code'}, 1000);"
