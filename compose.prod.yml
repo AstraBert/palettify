@@ -27,7 +27,7 @@ services:
       - letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock
   palettify:
-    image: ghcr.io/AstraBert/palettify:main
+    image: ghcr.io/astrabert/palettify:main
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.palettify.rule=Host(`palettify.nl`)"
