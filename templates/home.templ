@@ -2,6 +2,12 @@ package templates
 
 templ Home() {
     <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Extract a color palette from any image">
+        <meta name="keywords" content="image, palette, colors, css">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+        <title>Palettify - Extract a color palette from any image</title>
         <script src="//unpkg.com/alpinejs" defer></script>
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.7/dist/htmx.min.js"></script>
@@ -15,12 +21,15 @@ templ Home() {
     </head>
     <body class="bg-gray-50 min-h-screen">
         <header class="items-center text-center space-y-8">
-            <nav class="grid grid-cols-2 rounded-lg border border-gray-200 shadow-xl py-8 mt-8 mb-8">
+            <nav class="grid grid-cols-3 rounded-lg border border-gray-200 shadow-xl py-8 mt-8 mb-8">
                 <div>
                     <a href="/" class="font-comic text-3xl text-blue-400">Palettify</a>
                 </div>
                 <div>
                     <a href="https://github.com/AstraBert/palettify" class="font-comic text-3xl text-blue-400">Star on GitHub</a>
+                </div>
+                <div>
+                    <a href="https://stats.uptimerobot.com/kBjC4UppGc" class="font-comic text-3xl text-blue-400">Status Page</a>
                 </div>
             </nav>
             <br>

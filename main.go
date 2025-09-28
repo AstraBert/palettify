@@ -24,6 +24,7 @@ func Setup() *fiber.App {
 	// Define a route for handling image uploads
 	app.Post("/colors", handlers.ExtractColorsImage)
 	app.Get("/", handlers.HomeRoute)
+	app.Static("/", "./static/")
 
 	return app
 }
