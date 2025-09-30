@@ -19,13 +19,13 @@ func TestRoutes(t *testing.T) {
 	}{
 		{"/", "GET", "", true},
 		{"/", "POST", "", false},
-		{"/colors", "POST", "testfiles/docker.jpg", true},
-		{"/colors", "POST", "testfiles/gopher.png", true},
-		{"/colors", "GET", "testfiles/italy.jpg", false},
+		{"/html/colors", "POST", "testfiles/docker.jpg", true},
+		{"/html/colors", "POST", "testfiles/gopher.png", true},
+		{"/html/colors", "GET", "testfiles/italy.jpg", false},
 	}
 	app := Setup()
 	for _, tc := range testCases {
-		if tc.route == "/colors" {
+		if strings.HasSuffix(tc.route, "/colors") {
 			file, _ := os.Open(tc.payload)
 			defer file.Close()
 
