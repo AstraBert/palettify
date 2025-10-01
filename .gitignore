@@ -4,3 +4,6 @@
 # python
 .venv/
 .python-version
+
+# db
+fiber.sqlite3
